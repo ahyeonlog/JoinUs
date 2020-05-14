@@ -74,6 +74,7 @@ class RegisterViewController: UIViewController {
         theNextButton.setTitleColor(UIColor.white, for: .normal)
         theNextButton.backgroundColor = UIColor(rgb: Constants.colorHexValue)
         theNextButton.layer.cornerRadius = 5
+        theNextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         
         return theNextButton
     }()
@@ -88,7 +89,9 @@ class RegisterViewController: UIViewController {
         pwLabelConstraints()
         pwTextFieldConstraints()
         nextButtonConstraints()
-        // Do any additional setup after loading the view.
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
     }
     
     func backgroundViewConstraints() {
@@ -104,8 +107,8 @@ class RegisterViewController: UIViewController {
     func registerLabelConstraints() {
         view.addSubview(registerLabel)
         registerLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(80)
-            make.leading.equalTo(self.view).offset(40)
+            make.top.equalTo(80)
+            make.leading.equalTo(40)
             make.size.equalTo(CGSize(width: 150.0, height: 70.0))
         }
         
@@ -154,6 +157,12 @@ class RegisterViewController: UIViewController {
             make.size.equalTo(CGSize(width:300.0, height:60))
             
         }
+    }
+    
+    @objc func nextButtonTapped() {
+        print(#function)
+        let profileVC = ProfileViewController()
+        self.navigationController?.pushViewController(profileVC, animated: false)
     }
     
     /*
