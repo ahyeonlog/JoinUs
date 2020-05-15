@@ -13,6 +13,12 @@ class MainViewController: UIViewController {
     
     //MARK:- property
     
+    let backgroundView: UIView = {
+        let theBackgroundView = UIView()
+        theBackgroundView.backgroundColor = .white
+        
+        return theBackgroundView
+    }()
     
     // ImageView
     let imageView: UIImageView = {
@@ -27,7 +33,6 @@ class MainViewController: UIViewController {
         let theTextlabel = UILabel()
         theTextlabel.text = "JoinUs"
         theTextlabel.textColor = .white
-        theTextlabel.font = theTextlabel.font.withSize(20)
         theTextlabel.font = .boldSystemFont(ofSize: 30)
         
         return theTextlabel
@@ -66,13 +71,23 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        backgroundViewConstraints()
         imageViewConstraints()                        // set the Constraints
         textlabelConstraints()
         registerButtonConstraints()
         loginButtonConstraints()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: false)            // 첫 페이지 네비게이션 바 히든
     }
     
+    // backgroundView Constraints
+    func backgroundViewConstraints() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)            // 첫 페이지 네비게이션 바 히든
+        view.addSubview(backgroundView)
+        backgroundView.snp.makeConstraints { (make) in
+            make.top.leading.trailing.bottom.equalTo(self.view)
+        }
+    }
     
     // imageView Constraints
     func imageViewConstraints() {
@@ -81,7 +96,7 @@ class MainViewController: UIViewController {
             make.top.equalTo(self.view)
             make.leading.equalTo(self.view)
             make.trailing.equalTo(self.view)
-            make.bottom.equalTo(self.view).offset(-110)
+            make.bottom.equalTo(-110)
         }
     }
     
@@ -89,9 +104,8 @@ class MainViewController: UIViewController {
     func textlabelConstraints() {
         view.addSubview(textLabel)
         textLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(300)
-            make.leading.equalTo(self.view).offset(145)
-            
+            make.top.equalTo(300)
+            make.leading.equalTo(145)
             make.size.equalTo(CGSize(width: 120.0, height: 50.0))
         }
     }
@@ -100,8 +114,8 @@ class MainViewController: UIViewController {
     func registerButtonConstraints() {
         view.addSubview(registerButton)
         registerButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.view).offset(-40)
-            make.leading.equalTo(self.view).offset(40)
+            make.bottom.equalTo(-40)
+            make.leading.equalTo(40)
             make.size.equalTo(CGSize(width: 135.0, height:50.0))
         }
     }
@@ -111,7 +125,7 @@ class MainViewController: UIViewController {
         view.addSubview(loginButton)
         loginButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(registerButton.snp.bottom)
-            make.trailing.equalTo(self.view).offset(-40)
+            make.trailing.equalTo(-40)
             make.size.equalTo(registerButton.snp.size)
         }
     }
@@ -122,17 +136,17 @@ class MainViewController: UIViewController {
         print(#function)                // Debug Log
         let registerVC = RegisterViewController()
         registerVC.modalPresentationStyle = .fullScreen
-        present(registerVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(registerVC, animated: true)
+        
+//        present(registerVC, animated: true, completion: nil)
     }
-    
+
     // loginbuttonTapped
     @objc func loginbuttonTapped() {
         print(#function)
         let loginVC = LoginViewController()
-        loginVC.modalPresentationStyle = .fullScreen
-        self.present(loginVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(loginVC, animated: true)
         
-
     }
         
 }

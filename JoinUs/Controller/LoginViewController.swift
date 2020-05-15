@@ -68,9 +68,9 @@ class LoginViewController: UIViewController {
         return theTextField
     }()
     
-    let nextButton: UIButton = {
+    let loginButton: UIButton = {
         let theNextButton = UIButton()
-        theNextButton.setTitle("NEXT", for: .normal)
+        theNextButton.setTitle("LOGIN", for: .normal)
         theNextButton.setTitleColor(UIColor.white, for: .normal)
         theNextButton.backgroundColor = UIColor(rgb: Constants.colorHexValue)
         theNextButton.layer.cornerRadius = 5
@@ -89,7 +89,8 @@ class LoginViewController: UIViewController {
         pwLabelConstraints()
         pwTextFieldConstraints()
         nextButtonConstraints()
-        // Do any additional setup after loading the view.
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     func backgroundViewConstraints() {
@@ -145,8 +146,8 @@ class LoginViewController: UIViewController {
     }
     
     func nextButtonConstraints() {
-        view.addSubview(nextButton)
-        nextButton.snp.makeConstraints { (make) in
+        view.addSubview(loginButton)
+        loginButton.snp.makeConstraints { (make) in
             make.top.equalTo(pwTextField.snp.top).offset(80)
             make.leading.equalTo(pwTextField.snp.leading)
             make.size.equalTo(CGSize(width:300.0, height:60))

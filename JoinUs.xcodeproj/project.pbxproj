@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04263CB5246D66EC00F351E4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04263CB4246D66EC00F351E4 /* ProfileViewController.swift */; };
+		04263CB7246D725E00F351E4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04263CB6246D725E00F351E4 /* DetailViewController.swift */; };
 		042B1922246C26DA005E9900 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B1921246C26DA005E9900 /* Constants.swift */; };
 		042B1924246C2700005E9900 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B1923246C2700005E9900 /* MainViewController.swift */; };
 		042B1926246C271F005E9900 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B1925246C271F005E9900 /* RegisterViewController.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04263CB4246D66EC00F351E4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		04263CB6246D725E00F351E4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		042B1921246C26DA005E9900 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		042B1923246C2700005E9900 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		042B1925246C271F005E9900 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -96,8 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				042B1923246C2700005E9900 /* MainViewController.swift */,
-				042B1925246C271F005E9900 /* RegisterViewController.swift */,
 				042B1927246C272F005E9900 /* LoginViewController.swift */,
+				042B1925246C271F005E9900 /* RegisterViewController.swift */,
+				04263CB4246D66EC00F351E4 /* ProfileViewController.swift */,
+				04263CB6246D725E00F351E4 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -344,6 +350,8 @@
 				FFF81EA52467A0CF009C3D03 /* AppDelegate.swift in Sources */,
 				042B1928246C272F005E9900 /* LoginViewController.swift in Sources */,
 				042B1924246C2700005E9900 /* MainViewController.swift in Sources */,
+				04263CB5246D66EC00F351E4 /* ProfileViewController.swift in Sources */,
+				04263CB7246D725E00F351E4 /* DetailViewController.swift in Sources */,
 				FFF81EA72467A0CF009C3D03 /* SceneDelegate.swift in Sources */,
 				FFF81EAF2467A0CF009C3D03 /* JoinUs.xcdatamodeld in Sources */,
 			);
