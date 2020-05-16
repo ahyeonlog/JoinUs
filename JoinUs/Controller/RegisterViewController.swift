@@ -79,7 +79,13 @@ class RegisterViewController: UIViewController {
         return theNextButton
     }()
     
+    
     //MARK:- Methods
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = "회원가입"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundViewConstraints()
@@ -91,7 +97,7 @@ class RegisterViewController: UIViewController {
         nextButtonConstraints()
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-
+        
     }
     
     func backgroundViewConstraints() {
@@ -161,8 +167,35 @@ class RegisterViewController: UIViewController {
     
     @objc func nextButtonTapped() {
         print(#function)
+        
+        // ID & PW 유효값 검증
+        guard let id: String = self.idTextField.text, id.isEmpty == false else {
+            self.showAlert(message: "아이디를 입력해주세요")
+            return
+        }
+        
+        guard let pw: String = self.pwTextField.text, pw.isEmpty == false else {
+            self.showAlert(message: "비밀번호를 입력해주세요")
+            return
+        }
+        
         let profileVC = ProfileViewController()
-        self.navigationController?.pushViewController(profileVC, animated: false)
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    // Alert
+    func showAlert(message: String) {
+        let alert: UIAlertController = UIAlertController(title: "알림",
+                                                         message: message,
+                                                         preferredStyle: .alert)
+        
+        let okAction: UIAlertAction = UIAlertAction(title: "확인",
+                                                    style: .default,
+                                                    handler: nil)
+        
+        alert.addAction(okAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     /*
