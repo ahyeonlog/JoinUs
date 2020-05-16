@@ -66,12 +66,31 @@ class ProfileViewController: UIViewController {
         return theField
     }()
     
+    // 한 줄 소개
     let introLabel: UILabel = {
         let theLabel = UILabel()
         theLabel.text = "한 줄 소개"
         theLabel.font = UIFont.boldSystemFont(ofSize: 10)
         
         return theLabel
+    }()
+    
+    let firstOptionalLabel: UILabel = {
+        let thelabel = UILabel()
+        thelabel.text = "(optional)"
+        thelabel.font = UIFont.boldSystemFont(ofSize: 8)
+        thelabel.textColor = UIColor(white: 0.5, alpha: 0.5)
+        
+        return thelabel
+    }()
+    
+    let secondOptionalLabel: UILabel = {
+        let thelabel = UILabel()
+        thelabel.text = "(optional)"
+        thelabel.font = UIFont.boldSystemFont(ofSize: 8)
+        thelabel.textColor = UIColor(white: 0.5, alpha: 0.5)
+        
+        return thelabel
     }()
     
     let introField: UITextField = {
@@ -114,16 +133,8 @@ class ProfileViewController: UIViewController {
     }()
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    //MARK:- Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,6 +145,8 @@ class ProfileViewController: UIViewController {
         phoneNumLabelConstraints()
         phoneNumFieldConstraints()
         introLabelConstraints()
+        firstOptionalLabelConstraints()
+//        secondOptionalLabelConstraints()
         introFieldConstraints()
         locationLabelConstraints()
         locationFieldConstraints()
@@ -202,6 +215,15 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    func firstOptionalLabelConstraints() {
+        view.addSubview(firstOptionalLabel)
+        firstOptionalLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(introLabel.snp.top)
+            make.leading.equalTo(introLabel.snp.leading).offset(45)
+        }
+    }
+    
+    
     func introFieldConstraints() {
         view.addSubview(introField)
         introField.snp.makeConstraints { (make) in
@@ -218,6 +240,15 @@ class ProfileViewController: UIViewController {
             make.leading.equalTo(introField.snp.leading).offset(10)
         }
     }
+    
+//    func secondOptionalLabelConstraints() {
+//        view.addSubview(secondOptionalLabel)
+//        secondOptionalLabel.snp.makeConstraints { (make) in
+//            make.top.equalTo(locationLabel.snp.top)
+//            make.leading.equalTo(locationLabel.snp.leading).offset(45)
+//        }
+//    }
+    
     
     func locationFieldConstraints() {
         view.addSubview(locationField)
@@ -241,6 +272,6 @@ class ProfileViewController: UIViewController {
     @objc func nextButtonTapped() {
         print(#function)
         let detailVC = DetailViewController()
-        navigationController?.pushViewController(detailVC, animated: false)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

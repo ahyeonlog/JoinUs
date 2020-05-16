@@ -21,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 네비게이션 컨트롤러 지정
         guard let winScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: winScene)
-        let rootNC = UINavigationController(rootViewController: MainViewController())
-        self.window?.rootViewController = rootNC
+        let rootVC = UINavigationController(rootViewController: MainViewController())
+        self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()
     }
 

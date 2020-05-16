@@ -43,7 +43,9 @@ class MainViewController: UIViewController {
         let btn = UIButton()
         btn.setTitle("REGISTER", for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 15)
-        btn.setTitleColor(UIColor(rgb: 0x0F4C81), for: .normal)
+//        btn.setTitleColor(UIColor(rgb: 0x0F4C81), for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.backgroundColor = UIColor(rgb: Constants.colorHexValue)
         btn.layer.cornerRadius = 5
         btn.layer.borderWidth = 2
         btn.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
@@ -68,6 +70,13 @@ class MainViewController: UIViewController {
     
     
     //MARK:- Methods
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)            // 메인뷰 네비게이션 바 숨기기
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,12 +86,10 @@ class MainViewController: UIViewController {
         registerButtonConstraints()
         loginButtonConstraints()
         
-        self.navigationController?.setNavigationBarHidden(true, animated: false)            // 첫 페이지 네비게이션 바 히든
     }
     
     // backgroundView Constraints
     func backgroundViewConstraints() {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)            // 첫 페이지 네비게이션 바 히든
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { (make) in
             make.top.leading.trailing.bottom.equalTo(self.view)
@@ -115,8 +122,8 @@ class MainViewController: UIViewController {
         view.addSubview(registerButton)
         registerButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(-40)
-            make.leading.equalTo(40)
-            make.size.equalTo(CGSize(width: 135.0, height:50.0))
+            make.leading.equalTo(30)
+            make.size.equalTo(CGSize(width: 145.0, height:50.0))
         }
     }
     
@@ -125,7 +132,7 @@ class MainViewController: UIViewController {
         view.addSubview(loginButton)
         loginButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(registerButton.snp.bottom)
-            make.trailing.equalTo(-40)
+            make.trailing.equalTo(-30)
             make.size.equalTo(registerButton.snp.size)
         }
     }
@@ -138,7 +145,6 @@ class MainViewController: UIViewController {
         registerVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(registerVC, animated: true)
         
-//        present(registerVC, animated: true, completion: nil)
     }
 
     // loginbuttonTapped
