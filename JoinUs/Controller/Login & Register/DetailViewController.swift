@@ -116,6 +116,8 @@ class DetailViewController: UIViewController {
     //MARK:- Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = ""
 
         backgroundViewConstraints()
         detailLabelConstraints()

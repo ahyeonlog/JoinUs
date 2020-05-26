@@ -88,6 +88,9 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = ""
+        
         backgroundViewConstraints()
         registerLabelConstraints()
         idLabelConstraints()

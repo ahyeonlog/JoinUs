@@ -13,15 +13,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
-//        navigationItem.title = "Home"
+    
+        navigationItem.title = "Home"
 //        navigationController?.navigationBar.prefersLargeTitles = true
 
         navigationItem.hidesBackButton = true
-        
+        navigationItem.backBarButtonItem?.title = " "
     
         
     }
+    
     
 
     /*
