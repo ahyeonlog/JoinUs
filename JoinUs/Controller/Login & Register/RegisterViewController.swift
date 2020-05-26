@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class LoginViewController: UIViewController {
+class RegisterViewController: UIViewController {
     
     //MARK:- Properties
     
@@ -20,13 +20,13 @@ class LoginViewController: UIViewController {
         return theBackgroundView
     }()
     
-    let loginLabel: UILabel = {
-        let theLoginLabel = UILabel()
-        theLoginLabel.text = "Login"
-        theLoginLabel.font = UIFont.boldSystemFont(ofSize: 35)
-        theLoginLabel.textColor = UIColor(rgb: Constants.colorHexValue)
+    let registerLabel: UILabel = {
+        let theRegisterLabel = UILabel()
+        theRegisterLabel.text = "Register"
+        theRegisterLabel.font = UIFont.boldSystemFont(ofSize: 35)
+        theRegisterLabel.textColor = UIColor(rgb: Constants.colorHexValue)
         
-        return theLoginLabel
+        return theRegisterLabel
     }()
 
     let idLabel: UILabel = {
@@ -68,20 +68,26 @@ class LoginViewController: UIViewController {
         return theTextField
     }()
     
-    let loginButton: UIButton = {
+    let nextButton: UIButton = {
         let theNextButton = UIButton()
-        theNextButton.setTitle("LOGIN", for: .normal)
+        theNextButton.setTitle("NEXT", for: .normal)
         theNextButton.setTitleColor(UIColor.white, for: .normal)
         theNextButton.backgroundColor = UIColor(rgb: Constants.colorHexValue)
         theNextButton.layer.cornerRadius = 5
+        theNextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         
         return theNextButton
     }()
     
+    
     //MARK:- Methods
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = "회원가입"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         backgroundViewConstraints()
         registerLabelConstraints()
         idLabelConstraints()
@@ -90,23 +96,26 @@ class LoginViewController: UIViewController {
         pwTextFieldConstraints()
         nextButtonConstraints()
         
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+//        navigationController?.navigationBar.prefersLargeTitles = true
+
+        
     }
-    
-    // Constraints
     
     func backgroundViewConstraints() {
         view.addSubview(backgroundView)
+        backgroundView.backgroundColor = .white
         backgroundView.snp.makeConstraints { (make) in
-            make.top.leading.trailing.bottom.equalTo(self.view)
+            make.edges.equalToSuperview()
+            
         }
     }
     
     func registerLabelConstraints() {
-        view.addSubview(loginLabel)
-        loginLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(80)
-            make.leading.equalTo(self.view).offset(40)
+        view.addSubview(registerLabel)
+        registerLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(80)
+            make.leading.equalTo(40)
             make.size.equalTo(CGSize(width: 150.0, height: 70.0))
         }
         
@@ -115,8 +124,8 @@ class LoginViewController: UIViewController {
     func idLabelConstraints() {
         view.addSubview(idLabel)
         idLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(loginLabel.snp.top).offset(70)
-            make.leading.equalTo(loginLabel.snp.leading).offset(10)
+            make.top.equalTo(registerLabel.snp.top).offset(70)
+            make.leading.equalTo(registerLabel.snp.leading).offset(10)
         }
     }
 
@@ -124,7 +133,7 @@ class LoginViewController: UIViewController {
         view.addSubview(idTextField)
         idTextField.snp.makeConstraints { (make) in
             make.top.equalTo(idLabel.snp.top).offset(15)
-            make.leading.equalTo(loginLabel.snp.leading)
+            make.leading.equalTo(registerLabel.snp.leading)
             make.size.equalTo(CGSize(width: 300.0, height: 50.0))
 
         }
@@ -134,7 +143,7 @@ class LoginViewController: UIViewController {
         view.addSubview(pwLabel)
         pwLabel.snp.makeConstraints { (make) in
             make.top.equalTo(idTextField.snp.top).offset(80)
-            make.leading.equalTo(loginLabel.snp.leading).offset(10)
+            make.leading.equalTo(registerLabel.snp.leading).offset(10)
         }
     }
     
@@ -142,14 +151,14 @@ class LoginViewController: UIViewController {
         view.addSubview(pwTextField)
         pwTextField.snp.makeConstraints { (make) in
             make.top.equalTo(pwLabel.snp.top).offset(15)
-            make.leading.equalTo(loginLabel.snp.leading)
+            make.leading.equalTo(registerLabel.snp.leading)
             make.size.equalTo(CGSize(width: 300.0, height:50.0))
         }
     }
     
     func nextButtonConstraints() {
-        view.addSubview(loginButton)
-        loginButton.snp.makeConstraints { (make) in
+        view.addSubview(nextButton)
+        nextButton.snp.makeConstraints { (make) in
             make.top.equalTo(pwTextField.snp.top).offset(80)
             make.leading.equalTo(pwTextField.snp.leading)
             make.size.equalTo(CGSize(width:300.0, height:60))
@@ -157,5 +166,49 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @objc func nextButtonTapped() {
+        print(#function)
+        
+        // ID & PW 유효값 검증
+        guard let id: String = self.idTextField.text, id.isEmpty == false else {
+            self.showAlert(message: "아이디를 입력해주세요")
+            return
+        }
+        
+        guard let pw: String = self.pwTextField.text, pw.isEmpty == false else {
+            self.showAlert(message: "비밀번호를 입력해주세요")
+            return
+        }
+        
+        let profileVC = ProfileViewController()
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
     
+    // Alert
+    func showAlert(message: String) {
+        let alert: UIAlertController = UIAlertController(title: "알림",
+                                                         message: message,
+                                                         preferredStyle: .alert)
+        
+        let okAction: UIAlertAction = UIAlertAction(title: "확인",
+                                                    style: .default,
+                                                    handler: nil)
+        
+        alert.addAction(okAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    
+
 }

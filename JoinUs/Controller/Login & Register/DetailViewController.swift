@@ -128,13 +128,17 @@ class DetailViewController: UIViewController {
         referenceLabelConstraints()
         referenceTextFieldConstraints()
         signUpButtonConstraints()
+        
+//        navigationController?.navigationBar.prefersLargeTitles = true
+
     }
     
     // Constraints
     func backgroundViewConstraints() {
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { (make) in
-            make.top.leading.trailing.bottom.equalTo(self.view)
+//            make.top.leading.trailing.bottom.equalTo(self.view)
+            make.edges.equalToSuperview()
         }
     }
     
@@ -217,8 +221,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    // signUp 버튼
-    
+    // signUp 버튼    
     func signUpButtonConstraints() {
         view.addSubview(signUpButton)
         signUpButton.snp.makeConstraints { (make) in

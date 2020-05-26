@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
         let theTextlabel = UILabel()
         theTextlabel.text = "JoinUs"
         theTextlabel.textColor = .white
-        theTextlabel.font = .boldSystemFont(ofSize: 30)
+        theTextlabel.font = .boldSystemFont(ofSize: 35)
         
         return theTextlabel
     }()
@@ -60,6 +60,8 @@ class MainViewController: UIViewController {
         btn.setTitle("LOGIN", for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 15)
         btn.setTitleColor(UIColor(rgb: Constants.colorHexValue), for: .normal)
+//        btn.setTitleColor(UIColor.white, for: .normal)
+        btn.backgroundColor = .white
         btn.layer.cornerRadius = 5
         btn.layer.borderWidth = 2
         btn.layer.borderColor = UIColor(rgb: 0xF4c81).cgColor
@@ -81,7 +83,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         backgroundViewConstraints()
-        imageViewConstraints()                        // set the Constraints
+        imageViewConstraints()
         textlabelConstraints()
         registerButtonConstraints()
         loginButtonConstraints()
@@ -92,7 +94,7 @@ class MainViewController: UIViewController {
     func backgroundViewConstraints() {
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { (make) in
-            make.top.leading.trailing.bottom.equalTo(self.view)
+            make.edges.equalToSuperview()                                           // 상하좌우 모두 동일한 제약을 걸때는 edges를 이용한다.
         }
     }
     
@@ -100,10 +102,7 @@ class MainViewController: UIViewController {
     func imageViewConstraints() {
         view.addSubview(imageView)
         imageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view)
-            make.leading.equalTo(self.view)
-            make.trailing.equalTo(self.view)
-            make.bottom.equalTo(-110)
+            make.edges.equalToSuperview()
         }
     }
     
@@ -112,7 +111,7 @@ class MainViewController: UIViewController {
         view.addSubview(textLabel)
         textLabel.snp.makeConstraints { (make) in
             make.top.equalTo(300)
-            make.leading.equalTo(145)
+            make.leading.equalTo(140)
             make.size.equalTo(CGSize(width: 120.0, height: 50.0))
         }
     }
@@ -140,9 +139,8 @@ class MainViewController: UIViewController {
     
     // registerbuttonTapped
     @objc func registerButtonTapped() {
-        print(#function)                // Debug Log
+        print(#function)                                                        // Debug Log
         let registerVC = RegisterViewController()
-        registerVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(registerVC, animated: true)
         
     }
