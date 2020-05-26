@@ -20,7 +20,6 @@ class ProfileViewController: UIViewController {
         return view
     }()
     
-    
     let profileLabel: UILabel = {
         let theLabel = UILabel()
         theLabel.text = "Profile"
@@ -151,13 +150,17 @@ class ProfileViewController: UIViewController {
         locationLabelConstraints()
         locationFieldConstraints()
         nextButtonConstratins()
+        
+//        navigationController?.navigationBar.prefersLargeTitles = true
+
     }
     
     //MARK:- Constraints Method
     func backgroundViewConstraints() {
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { (make) in
-            make.top.leading.trailing.bottom.equalTo(self.view)
+//            make.top.leading.trailing.bottom.equalTo(self.view)
+            make.edges.equalToSuperview()
         }
         
     }
