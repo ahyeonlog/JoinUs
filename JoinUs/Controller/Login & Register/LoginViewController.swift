@@ -82,7 +82,7 @@ class LoginViewController: UIViewController {
     //MARK:- Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = ""
 //        navigationController?.navigationBar.prefersLargeTitles = true
         
         
@@ -165,8 +165,18 @@ class LoginViewController: UIViewController {
     
     @objc func loginButtonTapped() {
         print(#function)
+
+//        let tabBar = TabBarController()
+//        navigationController?.pushViewController(tabBar, animated: true)
         
+        // RootViewController 스위칭
         let tabBar = TabBarController()
-        navigationController?.pushViewController(tabBar, animated: true)
-}
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+        sceneDelegate.window?.rootViewController = tabBar
+        
+//        UIApplication.shared.keyWindow?.rootViewController = tabBar;
+
+    }
+    
+   
 }
