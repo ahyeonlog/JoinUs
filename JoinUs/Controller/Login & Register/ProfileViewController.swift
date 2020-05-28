@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate{
     
     //MARK:- Properties
     
@@ -43,6 +43,7 @@ class ProfileViewController: UIViewController {
         theField.layer.borderWidth = 2.0
         theField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
         theField.borderStyle = .roundedRect
+        theField.addTarget(self, action: #selector(keyboardWillShow), for: .touchUpInside)
         
         return theField
     }()
@@ -61,6 +62,7 @@ class ProfileViewController: UIViewController {
         theField.layer.borderWidth = 2.0
         theField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
         theField.borderStyle = .roundedRect
+        theField.keyboardType = .decimalPad
         
         return theField
     }()
@@ -131,6 +133,12 @@ class ProfileViewController: UIViewController {
         return theNextButton
     }()
     
+    var tapGesture: UITapGestureRecognizer {
+        let theTapGesture = UITapGestureRecognizer()
+        self.view.addGestureRecognizer(theTapGesture)
+        
+        return theTapGesture
+    }
     
 
     //MARK:- Methods
@@ -139,6 +147,12 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         title = ""
+        
+        tapGesture.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification,  object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         
         backgroundViewConstraints()
         profileLabelConstraints()
@@ -229,7 +243,6 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    
     func introFieldConstraints() {
         view.addSubview(introField)
         introField.snp.makeConstraints { (make) in
@@ -255,7 +268,6 @@ class ProfileViewController: UIViewController {
 //        }
 //    }
     
-    
     func locationFieldConstraints() {
         view.addSubview(locationField)
         locationField.snp.makeConstraints { (make) in
@@ -274,10 +286,63 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    func gestureRecognizerConstraints() {
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    
     //MARK:- Custom Methods
     @objc func nextButtonTapped() {
         print(#function)
+        
+        // 입력값 검증
+        guard let name: String = self.nameTextField.text, name.isEmpty == false else {
+            self.showAlert(message: "이름을 입력해주세요")
+            return
+        }
+        
+        guard let phoneNum: String = self.phoneNumField.text, phoneNum.isEmpty == false else {
+            self.showAlert(message: "핸드폰 번호를 입력해주세요")
+            return
+        }
+        
+        guard let location: String = self.locationField.text, location.isEmpty == false else {
+            self.showAlert(message: "활동지역을 입력해주세요")
+            return
+        }
+        
+        
         let detailVC = DetailViewController()
         navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // 키보드 팝업시 뷰 컨텐츠를 가리는 이슈 해결을 위한 함수
+    @objc func keyboardWillShow(_ sender: Notification) {
+        print(#function)
+        self.view.frame.origin.y = -50
+    }
+    
+    @objc func keyboardWillHide(_ sender: Notification) {
+        print(#function)
+        self.view.frame.origin.y = 0
+    }
+    
+    
+    
+    // 여백 터치시 키보드 내리기
+//    func gestureRecognizer(_ gestureRecognizer: UITapGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+//        print(#function)
+//        self.view.endEditing(true)
+//
+//        return true
+//    }
 }
+
+//extension ProfileViewController {
+//    func gesture
+//}

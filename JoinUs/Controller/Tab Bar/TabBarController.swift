@@ -13,9 +13,7 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UITabBar.appearance().tintColor = UIColor(rgb: Constants.colorHexValue)
-//        navigationController?.navigationItem.hidesBackButton = true
-        
+        UITabBar.appearance().tintColor = UIColor(rgb: Constants.colorHexValue)             // 선택된 탭 바 컬러 변경
         
         setUpTabBar()
     }
