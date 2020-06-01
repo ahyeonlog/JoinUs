@@ -162,7 +162,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // 로그인 버튼 터치시 홈 화면으로 이동
+    // 로그인 버튼 터치시 홈 화면으로 이동 
     
     @objc func loginButtonTapped() {
         print(#function)
