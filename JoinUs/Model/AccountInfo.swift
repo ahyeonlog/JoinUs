@@ -8,11 +8,19 @@
 
 import Foundation
 
-// 계정 정보 모델
-
+// 회원 모델 정의
 struct AccountInfo {
     
-    let id: String
-    let password: String
+    //MARK:- Properties
+    
+    var id: String?
+    var password: String?
+    var name: String?
+    var phoneNumber: String?
+    var location: String?
+    var job: String?
+    
+    // Initialize stored properties
+    
     
 }

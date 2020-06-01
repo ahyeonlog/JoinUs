@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
@@ -28,7 +29,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         return theRegisterLabel
     }()
-
+    
     let idLabel: UILabel = {
         let theIdLabel = UILabel()
         theIdLabel.text = "ID"
@@ -100,8 +101,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         nextButtonConstraints()
         
         navigationController?.setNavigationBarHidden(false, animated: false)
-//        navigationController?.navigationBar.prefersLargeTitles = true
-
+        //        navigationController?.navigationBar.prefersLargeTitles = true
+        
         
     }
     
@@ -131,14 +132,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             make.leading.equalTo(registerLabel.snp.leading).offset(10)
         }
     }
-
+    
     func idTextFieldConstraints() {
         view.addSubview(idTextField)
         idTextField.snp.makeConstraints { (make) in
             make.top.equalTo(idLabel.snp.top).offset(15)
             make.leading.equalTo(registerLabel.snp.leading)
             make.size.equalTo(CGSize(width: 300.0, height: 50.0))
-
+            
         }
     }
     
@@ -173,18 +174,27 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         print(#function)
         
         // ID & PW 입력값 검증
-        guard let id: String = self.idTextField.text, id.isEmpty == false else {
-            self.showAlert(message: "아이디를 입력해주세요")
+        guard let id: String = self.idTextField.text, id.isEmpty == false, id.contains("@") else {
+            self.showAlert(message: "아이디를 이메일 포맷으로 입력해주세요.\n ex: example@gmail.com")
             return
         }
         
-        guard let pw: String = self.pwTextField.text, pw.isEmpty == false else {
-            self.showAlert(message: "비밀번호를 입력해주세요")
+        guard let pw: String = self.pwTextField.text, pw.isEmpty == false, pw.count >= 6 else {
+            self.showAlert(message: "비밀번호는 최소 6자 이상을 입력해주세요.")
             return
         }
         
-        let profileVC = ProfileViewController()
-        self.navigationController?.pushViewController(profileVC, animated: true)
+        // 신규 사용자 생성
+        Auth.auth().createUser(withEmail: id, password: pw) { (dataResult, error) in
+            if let e = error {
+                print(e.localizedDescription)
+                self.showAlert(message: "Error Occured")
+            } else {
+                let profileVC = ProfileViewController()
+                self.navigationController?.pushViewController(profileVC, animated: true)
+            }
+        }
+        
     }
     
     
@@ -199,7 +209,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
      }
      */
     
-
+    
 }
 
 extension UIViewController {

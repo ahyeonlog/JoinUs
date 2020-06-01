@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase     // Firebase 추가
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-    
+        
         // NavigationController & RootViewController 지정
         window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -26,10 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mainVC = MainViewController()
             navigationController = UINavigationController(rootViewController: mainVC)
             window.rootViewController = navigationController
-//            window.rootViewController = UINavigationController(rootViewController: TabBarController())
+            //            window.rootViewController = UINavigationController(rootViewController: TabBarController())
             window.makeKeyAndVisible()
+            
         }
-         
+        
+        FirebaseApp.configure()     // Firebase 초기화
         return true
     }
     

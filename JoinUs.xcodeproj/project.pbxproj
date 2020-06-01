@@ -19,6 +19,7 @@
 		04A550C0247D48D300661A4F /* GeneralBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A550BF247D48D300661A4F /* GeneralBoardViewController.swift */; };
 		04A550C2247D49BF00661A4F /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A550C1247D49BF00661A4F /* ChatViewController.swift */; };
 		04A550C4247D4A5300661A4F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A550C3247D4A5300661A4F /* UserViewController.swift */; };
+		04C5304D24815B4F00D8A2FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C5304C24815B4F00D8A2FF /* GoogleService-Info.plist */; };
 		04C888F8246FC69500C213EE /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C888F7246FC69500C213EE /* AccountInfo.swift */; };
 		58C1E368D0F9A1F1376E1DF0 /* Pods_JoinUs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FE0EFD4B55B1F639181417 /* Pods_JoinUs.framework */; };
 		A30DF895546F4B8C5FC4EC01 /* Pods_JoinUsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D8D9DBE1C0513A03DB4B12 /* Pods_JoinUsTests.framework */; };
@@ -54,6 +55,7 @@
 		04A550BF247D48D300661A4F /* GeneralBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralBoardViewController.swift; sourceTree = "<group>"; };
 		04A550C1247D49BF00661A4F /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		04A550C3247D4A5300661A4F /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		04C5304C24815B4F00D8A2FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04C888F7246FC69500C213EE /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		0D340FAA10431D4309DA9B98 /* Pods-JoinUsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JoinUsTests.release.xcconfig"; path = "Target Support Files/Pods-JoinUsTests/Pods-JoinUsTests.release.xcconfig"; sourceTree = "<group>"; };
 		6BE19E1B1F05781C97FB2E10 /* Pods-JoinUs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JoinUs.release.xcconfig"; path = "Target Support Files/Pods-JoinUs/Pods-JoinUs.release.xcconfig"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				FFF81EB02467A0D3009C3D03 /* Assets.xcassets */,
 				FFF81EB22467A0D3009C3D03 /* LaunchScreen.storyboard */,
 				FFF81EB52467A0D3009C3D03 /* Info.plist */,
+				04C5304C24815B4F00D8A2FF /* GoogleService-Info.plist */,
 				FFF81EAD2467A0CF009C3D03 /* JoinUs.xcdatamodeld */,
 			);
 			path = JoinUs;
@@ -303,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFF81EB42467A0D3009C3D03 /* LaunchScreen.storyboard in Resources */,
+				04C5304D24815B4F00D8A2FF /* GoogleService-Info.plist in Resources */,
 				FFF81EB12467A0D3009C3D03 /* Assets.xcassets in Resources */,
 				FFF81EAC2467A0CF009C3D03 /* Main.storyboard in Resources */,
 			);
