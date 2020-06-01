@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Firebase
 
 class LoginViewController: UIViewController {
     
@@ -28,7 +29,7 @@ class LoginViewController: UIViewController {
         
         return theLoginLabel
     }()
-
+    
     let idLabel: UILabel = {
         let theIdLabel = UILabel()
         theIdLabel.text = "ID"
@@ -83,7 +84,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = ""
-//        navigationController?.navigationBar.prefersLargeTitles = true
+        //        navigationController?.navigationBar.prefersLargeTitles = true
         
         
         backgroundViewConstraints()
@@ -123,14 +124,14 @@ class LoginViewController: UIViewController {
             make.leading.equalTo(loginLabel.snp.leading).offset(10)
         }
     }
-
+    
     func idTextFieldConstraints() {
         view.addSubview(idTextField)
         idTextField.snp.makeConstraints { (make) in
             make.top.equalTo(idLabel.snp.top).offset(15)
             make.leading.equalTo(loginLabel.snp.leading)
             make.size.equalTo(CGSize(width: 300.0, height: 50.0))
-
+            
         }
     }
     
@@ -161,22 +162,39 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // 로그인 버튼 터치시 홈 화면으로 이동
+    // 로그인 버튼 터치시 홈 화면으로 이동 
     
     @objc func loginButtonTapped() {
         print(#function)
-
-//        let tabBar = TabBarController()
-//        navigationController?.pushViewController(tabBar, animated: true)
         
-        // RootViewController 스위칭
-        let tabBar = TabBarController()
-        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
-        sceneDelegate.window?.rootViewController = tabBar
+        // 입력값 검증
+        guard let id: String = self.idTextField.text, id.isEmpty == false, id.contains("@") else {
+            self.showAlert(message: "아이디를 이메일 포맷으로 입력해주세요.\n ex: example@gmail.com")
+            return
+        }
         
-//        UIApplication.shared.keyWindow?.rootViewController = tabBar;
-
+        guard let pw: String = self.pwTextField.text, pw.isEmpty == false, pw.count >= 6 else {
+            self.showAlert(message: "비밀번호는 최소 6자 이상을 입력해주세요.")
+            return
+        }
+        
+        // Firebase/Auth
+        // 기존 사용자 로그인 진행
+        Auth.auth().signIn(withEmail: id, password: pw) { [weak self] authResult, error in
+            
+            if let e = error {
+                self!.showAlert(message: e.localizedDescription)
+                print(e.localizedDescription)
+                
+            } else {
+                // RootViewController Switching (MainViewController -> tabBarController)
+                let tabBar = TabBarController()
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+                sceneDelegate.window?.rootViewController = tabBar
+                
+            }
+        }
+        
     }
     
-   
 }

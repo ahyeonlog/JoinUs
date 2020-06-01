@@ -8,8 +8,10 @@
 
 import UIKit
 import SnapKit
+import Firebase
 
 class DetailViewController: UIViewController {
+    
     
     //MARK:- Properties
     
@@ -117,6 +119,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
         title = ""
 
         backgroundViewConstraints()
@@ -130,6 +135,10 @@ class DetailViewController: UIViewController {
         referenceLabelConstraints()
         referenceTextFieldConstraints()
         signUpButtonConstraints()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
 //        navigationController?.navigationBar.prefersLargeTitles = true
 
@@ -239,6 +248,15 @@ class DetailViewController: UIViewController {
     @objc func signUpBtnTapped() {
         print(#function)
         navigationController?.popToRootViewController(animated: true)
+        
+    }
+    
+    @objc func keyboardWillShow(_ sender: Notification) {
+        self.view.frame.origin.y = -50
+    }
+    
+    @objc func keyboardWillHide(_ sender: Notification) {
+        self.view.frame.origin.y = 0
     }
     
     /*

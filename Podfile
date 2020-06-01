@@ -12,5 +12,10 @@ target 'JoinUs' do
     # Pods for testing
   end
     pod 'SnapKit', '~> 5.0.0'
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+# add pods for desired Firebase products
+# https://firebase.google.com/docs/ios/setup#available-pods
 
 end

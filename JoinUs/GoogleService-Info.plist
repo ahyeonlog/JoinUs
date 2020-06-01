@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>872283846567-mair6afb2mpmp63mr9elv5ut19j06t6l.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.872283846567-mair6afb2mpmp63mr9elv5ut19j06t6l</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCzJtaqKkBc6gQ12Q1Nlk-IzWYDzeYO4xI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>872283846567</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>kr.paulo.JoinUs</string>
+	<key>PROJECT_ID</key>
+	<string>joinus-9db90</string>
+	<key>STORAGE_BUCKET</key>
+	<string>joinus-9db90.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:872283846567:ios:64abc994b6af678d842882</string>
+	<key>DATABASE_URL</key>
+	<string>https://joinus-9db90.firebaseio.com</string>
+</dict>
+</plist>

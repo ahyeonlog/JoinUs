@@ -13,6 +13,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIGestureRec
     
     //MARK:- Properties
     
+    var accountInfo: AccountInfo?
+    
     let backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -147,7 +149,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIGestureRec
         super.viewDidLoad()
         
         title = ""
-        
         tapGesture.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification,  object: nil)
@@ -307,7 +308,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIGestureRec
         }
         
         guard let location: String = self.locationField.text, location.isEmpty == false else {
-            self.showAlert(message: "활동지역을 입력해주세요")
+            self.showAlert(message: "활동 지역을 입력해주세요")
             return
         }
         
@@ -346,3 +347,4 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIGestureRec
 //extension ProfileViewController {
 //    func gesture
 //}
+
