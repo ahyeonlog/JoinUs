@@ -119,7 +119,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var ref: DatabaseReference!
+        let ref: DatabaseReference!
         ref = Database.database().reference()
         
         title = ""

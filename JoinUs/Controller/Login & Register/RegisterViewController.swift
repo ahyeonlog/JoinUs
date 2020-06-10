@@ -9,8 +9,13 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
+    
+    
+    let ref = Database.database().reference()
+    var userCnt = 0                          // userInfo counting
     
     //MARK:- Properties
     
@@ -172,8 +177,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     @objc func nextButtonTapped() {
         print(#function)
-        
-        // ID & PW 입력값 검증
+    
+        // ID & PW Verification
         guard let id: String = self.idTextField.text, id.isEmpty == false, id.contains("@") else {
             self.showAlert(message: "아이디를 이메일 포맷으로 입력해주세요.\n ex: example@gmail.com")
             return
@@ -184,16 +189,25 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        // 신규 사용자 생성
+        // create new User
         Auth.auth().createUser(withEmail: id, password: pw) { (dataResult, error) in
             if let e = error {
                 print(e.localizedDescription)
-                self.showAlert(message: "Error Occured")
+                self.showAlert(message: "\(e.localizedDescription)")
             } else {
                 let profileVC = ProfileViewController()
                 self.navigationController?.pushViewController(profileVC, animated: true)
             }
         }
+        
+        userCnt += 1
+        
+        // Register New user Info into Firebase
+        let usersRef = self.ref.child("users")
+        usersRef.child(String(userCnt)).setValue(["id": id, "pw": pw])
+        
+        
+        
         
     }
     
