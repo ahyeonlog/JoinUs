@@ -98,6 +98,11 @@ class LoginViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+}
+
+
+
+extension LoginViewController {
     // Constraints
     
     func backgroundViewConstraints() {
@@ -160,6 +165,10 @@ class LoginViewController: UIViewController {
             make.size.equalTo(CGSize(width:300.0, height:60))
             
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     // 로그인 버튼 터치시 홈 화면으로 이동

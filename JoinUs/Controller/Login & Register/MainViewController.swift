@@ -43,7 +43,7 @@ class MainViewController: UIViewController {
         let btn = UIButton()
         btn.setTitle("REGISTER", for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 15)
-//        btn.setTitleColor(UIColor(rgb: 0x0F4C81), for: .normal)
+        //        btn.setTitleColor(UIColor(rgb: 0x0F4C81), for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = UIColor(rgb: Constants.colorHexValue)
         btn.layer.cornerRadius = 5
@@ -60,7 +60,7 @@ class MainViewController: UIViewController {
         btn.setTitle("LOGIN", for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 15)
         btn.setTitleColor(UIColor(rgb: Constants.colorHexValue), for: .normal)
-//        btn.setTitleColor(UIColor.white, for: .normal)
+        //        btn.setTitleColor(UIColor.white, for: .normal)
         btn.backgroundColor = .white
         btn.layer.cornerRadius = 5
         btn.layer.borderWidth = 2
@@ -76,7 +76,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)            // 메인뷰 네비게이션 바 숨기기
-
+        
     }
     
     override func viewDidLoad() {
@@ -90,6 +90,14 @@ class MainViewController: UIViewController {
         loginButtonConstraints()
         
     }
+}
+
+extension MainViewController {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     
     // backgroundView Constraints
     func backgroundViewConstraints() {
@@ -145,7 +153,7 @@ class MainViewController: UIViewController {
         self.navigationController?.pushViewController(registerVC, animated: true)
         
     }
-
+    
     // loginbuttonTapped
     @objc func loginbuttonTapped() {
         print(#function)
@@ -153,25 +161,44 @@ class MainViewController: UIViewController {
         self.navigationController?.pushViewController(loginVC, animated: true)
         
     }
-        
+    
 }
+
+
+extension UIViewController {
+    // Alert
+    func showAlert(message: String) {
+        let alert: UIAlertController = UIAlertController(title: "알림",
+                                                         message: message,
+                                                         preferredStyle: .alert)
+        
+        let okAction: UIAlertAction = UIAlertAction(title: "확인",
+                                                    style: .default,
+                                                    handler: nil)
+        
+        alert.addAction(okAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
 
 
 // hexColor to UIColor
 extension UIColor {
-   convenience init(red: Int, green: Int, blue: Int) {
-       assert(red >= 0 && red <= 255, "Invalid red component")
-       assert(green >= 0 && green <= 255, "Invalid green component")
-       assert(blue >= 0 && blue <= 255, "Invalid blue component")
-
-       self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-   }
-
-   convenience init(rgb: Int) {
-       self.init(
-           red: (rgb >> 16) & 0xFF,
-           green: (rgb >> 8) & 0xFF,
-           blue: rgb & 0xFF
-       )
-   }
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
 }

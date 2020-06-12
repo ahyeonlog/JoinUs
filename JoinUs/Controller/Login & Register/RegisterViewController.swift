@@ -111,6 +111,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+}
+
+extension RegisterViewController {
+    
     func backgroundViewConstraints() {
         view.addSubview(backgroundView)
         backgroundView.backgroundColor = .white
@@ -175,6 +179,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @objc func nextButtonTapped() {
         print(#function)
     
@@ -189,22 +197,36 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        // create new User
-        Auth.auth().createUser(withEmail: id, password: pw) { (dataResult, error) in
-            if let e = error {
-                print(e.localizedDescription)
-                self.showAlert(message: "\(e.localizedDescription)")
-            } else {
-                let profileVC = ProfileViewController()
-                self.navigationController?.pushViewController(profileVC, animated: true)
-            }
-        }
+//        let nextVC = ProfileViewController()
         
-        userCnt += 1
+        // Pass Data(ID,PW) to ProfileViewController
+        let profileVC = ProfileViewController()
+        profileVC.idValue = id
+        profileVC.pwValue = pw
+        navigationController?.pushViewController(profileVC, animated: true)
+        
+        
+        // create new User
+//        Auth.auth().createUser(withEmail: id, password: pw) { (dataResult, error) in
+//            if let e = error {
+//                print(e.localizedDescription)
+//                self.showAlert(message: "\(e.localizedDescription)")
+//            } else {
+//                let profileVC = ProfileViewController()
+//                profileVC.idValue = id
+//                profileVC.pwValue = pw
+//                self.navigationController?.pushViewController(profileVC, animated: true)
+//            }
+//        }
+        
+        
         
         // Register New user Info into Firebase
-        let usersRef = self.ref.child("users")
-        usersRef.child(String(userCnt)).setValue(["id": id, "pw": pw])
+//        let usersRef = self.ref.child("users")
+//
+//        if let uid = Auth.auth().currentUser?.uid {
+//            usersRef.child(uid).setValue(["id": id, "pw": pw])
+//        }
         
         
         
@@ -224,21 +246,4 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
      */
     
     
-}
-
-extension UIViewController {
-    // Alert
-    func showAlert(message: String) {
-        let alert: UIAlertController = UIAlertController(title: "알림",
-                                                         message: message,
-                                                         preferredStyle: .alert)
-        
-        let okAction: UIAlertAction = UIAlertAction(title: "확인",
-                                                    style: .default,
-                                                    handler: nil)
-        
-        alert.addAction(okAction)
-        
-        self.present(alert, animated: true, completion: nil)
-    }
 }

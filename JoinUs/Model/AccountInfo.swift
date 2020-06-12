@@ -13,11 +13,11 @@ struct AccountInfo {
     
     //MARK:- Properties
     
-    var id: String?
-    var password: String?
-    var name: String?
-    var phoneNumber: String?
-    var location: String?
+    var id: String?                         // ID
+    var password: String?                   // PW
+    var name: String?                       // 이름
+    var phoneNumber: String?                // 휴대폰
+//    var location: String?
     var job: String?
     
     // Initialize stored properties
