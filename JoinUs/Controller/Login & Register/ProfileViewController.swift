@@ -7,264 +7,15 @@
 //
 
 import UIKit
-import SnapKit
-import FirebaseAuth
 import FirebaseDatabase
+import FirebaseAuth
 
-class ProfileViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate {
-    
-    //MARK:- Properties
-    
-    let ref = Database.database().reference()
-    var idValue: String = ""
-    var pwValue: String = ""
-    
-    let backgroundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        
-        return view
-    }()
-    
-    let profileLabel: UILabel = {
-        let theLabel = UILabel()
-        theLabel.text = "Profile"
-        theLabel.font = UIFont.boldSystemFont(ofSize: 35)
-        theLabel.textColor = UIColor(rgb: Constants.colorHexValue)
-        
-        return theLabel
-    }()
-    
-    
-    // 이름 label & textField
-    let nameLabel: UILabel = {
-        let theLabel = UILabel()
-        theLabel.text = "이름"
-        theLabel.font = UIFont.boldSystemFont(ofSize: 10)
-        
-        return theLabel
-    }()
-    
-    let nameTextField: UITextField = {
-        let theField = UITextField()
-        theField.font = UIFont(name: "System", size: 8.0)
-        theField.layer.borderWidth = 2.0
-        theField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
-        theField.borderStyle = .roundedRect
-        theField.addTarget(self, action: #selector(keyboardWillShow), for: .touchUpInside)
-        
-        return theField
-    }()
-    
-    // 휴대폰 label & textField
-    let phoneNumLabel: UILabel = {
-        let theLabel = UILabel()
-        theLabel.text = "휴대폰"
-        theLabel.font = UIFont.boldSystemFont(ofSize: 10)
-        
-        return theLabel
-    }()
-    
-    let phoneNumField: UITextField = {
-        let theField = UITextField()
-        theField.font = UIFont(name: "System", size: 8.0)
-        theField.layer.borderWidth = 2.0
-        theField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
-        theField.borderStyle = .roundedRect
-        theField.keyboardType = .decimalPad
-        
-        return theField
-    }()
-    
-    // 한 줄 소개 label & textField
-    let introLabel: UILabel = {
-        let theLabel = UILabel()
-        theLabel.text = "한 줄 소개"
-        theLabel.font = UIFont.boldSystemFont(ofSize: 10)
-        
-        return theLabel
-    }()
-    
-    let firstOptionalLabel: UILabel = {
-        let thelabel = UILabel()
-        thelabel.text = "(optional)"
-        thelabel.font = UIFont.boldSystemFont(ofSize: 8)
-        thelabel.textColor = UIColor(white: 0.5, alpha: 0.5)
-        
-        return thelabel
-    }()
-    
-    //    let secondOptionalLabel: UILabel = {
-    //        let thelabel = UILabel()
-    //        thelabel.text = "(optional)"
-    //        thelabel.font = UIFont.boldSystemFont(ofSize: 8)
-    //        thelabel.textColor = UIColor(white: 0.5, alpha: 0.5)
-    //
-    //        return thelabel
-    //    }()
-    
-    let introField: UITextField = {
-        let theField = UITextField()
-        theField.font = UIFont(name: "System", size: 10.0)
-        theField.layer.borderWidth = 2.0
-        theField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
-        theField.borderStyle = .roundedRect
-        
-        return theField
-    }()
-    
-    
-    // 직군 label & textField
-    let jobLabel: UILabel = {
-        let theLabel = UILabel()
-        theLabel.text = "직군"
-        theLabel.font = .boldSystemFont(ofSize: 10)
-        
-        return theLabel
-    }()
-    
-    let jobTextField: UITextField = {
-        let theTextField = UITextField()
-        theTextField.font = UIFont(name: "system", size: 10.0)
-        theTextField.layer.borderWidth = 2.0
-        theTextField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
-        
-        return theTextField
-    }()
-    
-    // 경력 label & textField
-    let careerLabel: UILabel = {
-        let theLabel = UILabel()
-        theLabel.text = "경력"
-        theLabel.font = .boldSystemFont(ofSize: 10)
-        
-        return theLabel
-    }()
-    
-    let careerTextField: UITextField = {
-        let theTextField = UITextField()
-        theTextField.font = UIFont(name: "system", size: 10.0)
-        theTextField.layer.borderWidth = 2.0
-        theTextField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
-        theTextField.keyboardType = .decimalPad
-        return theTextField
-    }()
-    
-    // 스킬 label & textField
-    let skillLabel: UILabel = {
-        let theLabel = UILabel()
-        theLabel.text = "스킬"
-        theLabel.font = .boldSystemFont(ofSize: 10)
-        
-        return theLabel
-    }()
-    
-    let skillTextField: UITextField = {
-        let theTextField = UITextField()
-        theTextField.font = UIFont(name: "system", size: 10.0)
-        theTextField.layer.borderWidth = 2.0
-        theTextField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
-        
-        return theTextField
-    }()
-    
-    // 포트폴리오 / 웹사이트 label & textField
-    let referenceLabel: UILabel = {
-        let theLabel = UILabel()
-        theLabel.text = "PortFolio / Website"
-        theLabel.font = .boldSystemFont(ofSize: 10)
-        
-        return theLabel
-    }()
-    
-    let referenceTextField: UITextField = {
-        let theTextField = UITextField()
-        theTextField.font = UIFont(name: "system", size: 10.0)
-        theTextField.layer.borderWidth = 2.0
-        theTextField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
-        
-        return theTextField
-    }()
-    
-    
-    
-    // SIGN UP button Button
-    let signUpButton: UIButton = {
-        let theNextButton = UIButton()
-        theNextButton.setTitle("SIGN UP", for: .normal)
-        theNextButton.setTitleColor(UIColor.white, for: .normal)
-        theNextButton.backgroundColor = UIColor(rgb: Constants.colorHexValue)
-        theNextButton.layer.cornerRadius = 5
-        theNextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
-        
-        return theNextButton
-    }()
-    
-    // tapGesture Recognizer
-    var tapGesture: UITapGestureRecognizer {
-        let theTapGesture = UITapGestureRecognizer()
-        self.view.addGestureRecognizer(theTapGesture)
-        
-        return theTapGesture
-    }
-    
-    
-    //MARK:- Methods
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        title = ""
-        tapGesture.delegate = self
-        
-        // Add Observer
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        
-        backgroundViewConstraints()
-        
-        profileLabelConstraints()
-        
-        nameLabelConstraints()
-        nameFieldConstraints()
-        
-        phoneNumLabelConstraints()
-        phoneNumFieldConstraints()
-        
-        introLabelConstraints()
-        firstOptionalLabelConstraints()
-        //        secondOptionalLabelConstraints()
-        introFieldConstraints()
-        
-        jobLabelConstraints()
-        jobFieldConstraints()
-        
-        careerLabelConstraints()
-        careerFieldConstraints()
-        
-        skillLabelConstraints()
-        skillFieldConstraints()
-        
-        referenceLabelConstraints()
-        referenceFieldConstraints()
-        
-        signUpBtnConstratins()
-        
-        
-        //        nextButtonConstratins()
-        
-        //        navigationController?.navigationBar.prefersLargeTitles = true
-        
-    }
-    
-}
 
 extension ProfileViewController {
     
     //MARK:- Constraints Method
     
+    // 여백 터치시 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -275,7 +26,6 @@ extension ProfileViewController {
             make.edges.equalToSuperview()
         }
     }
-    
     
     // Profile Label Constratins
     func profileLabelConstraints() {
@@ -402,7 +152,7 @@ extension ProfileViewController {
         view.addSubview(skillLabel)
         skillLabel.snp.makeConstraints { (make) in
             make.top.equalTo(careerTextField.snp.top).offset(55)
-            make.leading.equalTo(careerLabel.snp.leading)
+            make.leading.equalTo(careerTextField.snp.leading).offset(10)
         }
     }
     
@@ -420,7 +170,7 @@ extension ProfileViewController {
         view.addSubview(referenceLabel)
         referenceLabel.snp.makeConstraints { (make) in
             make.top.equalTo(skillTextField.snp.top).offset(55)
-            make.leading.equalTo(skillLabel.snp.leading)
+            make.leading.equalTo(skillTextField.snp.leading).offset(10)
         }
     }
     
@@ -469,7 +219,7 @@ extension ProfileViewController {
             return
         }
         
-        guard let career: String = self.jobTextField.text, career.isEmpty == false else {
+        guard let career: String = self.careerTextField.text, career.isEmpty == false else {
             self.showAlert(message: "경력을 입력해주세요")
             return
         }
@@ -479,37 +229,24 @@ extension ProfileViewController {
             return
         }
         
-        
+        // Create new user,
         Auth.auth().createUser(withEmail: idValue, password: pwValue) { (data, error) in
             if let e = error {
                 self.showAlert(message: e.localizedDescription)
             } else {
-                let usersRef = self.ref.child("users")
+                let ref = Database.database().reference()
+                let usersRef = ref.child("users")
                 if let uid = Auth.auth().currentUser?.uid, let intro:String = self.introField.text, let reference: String = self.referenceTextField.text {
                     usersRef.child(uid).setValue(["id": self.idValue.lowercased() , "pw": self.pwValue, "name": name, "phoneNum": phoneNum, "intro": intro, "job": job, "career": career, "skill": skill, "reference": reference])
                 }
             }
         }
         
-        
-        //        // Register user Info into Firebase
-        //        let userRef = self.ref.child("users")
-        //
-        //
-        //
-        //        if let uid = Auth.auth().currentUser?.uid, let intro:String = self.introField.text, let reference: String = self.referenceTextField.text {
-        //
-        //            userRef.child(uid).setValue(["id": idValue, "pw": pwValue, "name": name, "phoneNum": phoneNum, "intro": intro, "job": job, "career": career, "skill": skill, "reference": reference])
-        //        }
-        
-        
-        
         // pop to MainViewController
         if let nc = navigationController   {
             nc.popToRootViewController(animated: true)
             showAlert(message: "회원가입 완료")
         }
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -539,8 +276,3 @@ extension ProfileViewController {
         return true
     }
 }
-
-//extension ProfileViewController {
-//    func gesture
-//}
-

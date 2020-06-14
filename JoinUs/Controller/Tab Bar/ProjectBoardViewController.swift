@@ -10,38 +10,57 @@ import UIKit
 
 class ProjectBoardViewController: UITableViewController {
 
+    let items: [String] = ["yeojaeng", "Swift", "iOS"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "프로젝트 게시판"
-
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        
+        // Regist Cell
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
+    
+}
 
-    // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+extension ProjectBoardViewController {
 
+    // MARK: - TableView DataSource
+    
+    // Cell's Count
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return self.items.count
     }
 
-    /*
+    
+    // Cell Design
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        
+        cell.textLabel?.text = items[indexPath.row]
+        
         return cell
     }
-    */
+    
+    
+    
+    
+    //MARK:- TableView Delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(items[indexPath.row])
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -89,3 +108,4 @@ class ProjectBoardViewController: UITableViewController {
     */
 
 }
+
