@@ -12,5 +12,5 @@ struct Constants {
     
     // classicBlue Color Hexvalue
     static let colorHexValue = 0x0F4C81
-
+    
 }

@@ -9,8 +9,12 @@
 import UIKit
 
 class ProjectBoardViewController: UITableViewController {
+        
+    // Cell Identifier
+    let cellIdentifier = "ProjectCell"
 
-    let items: [String] = ["yeojaeng", "Swift", "iOS"]
+    var projectCells: [ProjectCell] = [ProjectCell]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,10 +22,12 @@ class ProjectBoardViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Registers a class for use in creating new table cells.
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.register(ProjectCustomCell.self, forCellReuseIdentifier: cellIdentifier)
         
-        // Regist Cell
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
+        // Add Dummy Data into Array
+        createProjectArray()
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -35,32 +41,50 @@ class ProjectBoardViewController: UITableViewController {
 extension ProjectBoardViewController {
 
     // MARK: - TableView DataSource
-    
-    // Cell's Count
+
+    // How many cell will be shown on TableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.items.count
+
+        return projectCells.count
     }
 
-    
-    // Cell Design
+
+    // Create our TableView Cell and return it
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProjectCustomCell
         
-        cell.textLabel?.text = items[indexPath.row]
+        let currentLastItem = projectCells[indexPath.row]
+        cell.titleLabel.text = currentLastItem.title
+        cell.authorLabel.text = currentLastItem.author
+        cell.creationTimeLabel.text = currentLastItem.creationTime
+//        cell.likeImage.image = UIImage(named: "like")
+        cell.likeCountLabel.text = String(currentLastItem.likeCount!)
         
+        
+
+
         return cell
+    }
+
+    // Append Dummy Data to projectCells Array
+    func createProjectArray() {
+        
+        
+        projectCells.append(ProjectCell(title: "JoinUs Project Board Test", author: "여정수", creationTime: "2020-06-15", likeCount: 5, commentCount: 100))
+        
+        projectCells.append(ProjectCell(title: "Test", author: "Test", creationTime: "2020-06-15", likeCount: 99, commentCount: 99))
     }
     
     
     
     
     //MARK:- TableView Delegate
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(items[indexPath.row])
-    }
+//
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print(items[indexPath.row])
+//    }
 
     /*
     // Override to support conditional editing of the table view.
