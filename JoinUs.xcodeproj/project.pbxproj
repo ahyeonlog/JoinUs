@@ -26,6 +26,8 @@
 		04A550C0247D48D300661A4F /* GeneralBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A550BF247D48D300661A4F /* GeneralBoardViewController.swift */; };
 		04A550C2247D49BF00661A4F /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A550C1247D49BF00661A4F /* ChatViewController.swift */; };
 		04A550C4247D4A5300661A4F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A550C3247D4A5300661A4F /* UserViewController.swift */; };
+		04C24C6F2498A65F00E8673B /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C24C6E2498A65F00E8673B /* AddPostView.swift */; };
+		04C24C712498CEA000E8673B /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C24C702498CEA000E8673B /* AddPostViewController.swift */; };
 		04C5304D24815B4F00D8A2FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C5304C24815B4F00D8A2FF /* GoogleService-Info.plist */; };
 		04C888F8246FC69500C213EE /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C888F7246FC69500C213EE /* AccountInfo.swift */; };
 		58C1E368D0F9A1F1376E1DF0 /* Pods_JoinUs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FE0EFD4B55B1F639181417 /* Pods_JoinUs.framework */; };
@@ -68,6 +70,8 @@
 		04A550BF247D48D300661A4F /* GeneralBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralBoardViewController.swift; sourceTree = "<group>"; };
 		04A550C1247D49BF00661A4F /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		04A550C3247D4A5300661A4F /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		04C24C6E2498A65F00E8673B /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
+		04C24C702498CEA000E8673B /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		04C5304C24815B4F00D8A2FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04C888F7246FC69500C213EE /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		0D340FAA10431D4309DA9B98 /* Pods-JoinUsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JoinUsTests.release.xcconfig"; path = "Target Support Files/Pods-JoinUsTests/Pods-JoinUsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -108,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04132ED42498A4E40091A787 /* ProjectBoard */ = {
+			isa = PBXGroup;
+			children = (
+				043EC734247D327800D1F52E /* ProjectBoardViewController.swift */,
+				04C24C702498CEA000E8673B /* AddPostViewController.swift */,
+			);
+			path = ProjectBoard;
+			sourceTree = "<group>";
+		};
 		042B191E246C26C0005E9900 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				0458C5C92495FE93008C7A2C /* Login & Register */,
-				0458C5CB24960AE3008C7A2C /* Project */,
+				0458C5CB24960AE3008C7A2C /* ProjectBoard */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -160,9 +173,9 @@
 		0455F7C8247D29C300DAE9BC /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
+				04132ED42498A4E40091A787 /* ProjectBoard */,
 				0455F7C3247D28E700DAE9BC /* TabBarController.swift */,
 				0455F7C5247D294A00DAE9BC /* HomeViewController.swift */,
-				043EC734247D327800D1F52E /* ProjectBoardViewController.swift */,
 				04A550BF247D48D300661A4F /* GeneralBoardViewController.swift */,
 				04A550C1247D49BF00661A4F /* ChatViewController.swift */,
 				04A550C3247D4A5300661A4F /* UserViewController.swift */,
@@ -192,12 +205,13 @@
 			path = "Login & Register";
 			sourceTree = "<group>";
 		};
-		0458C5CB24960AE3008C7A2C /* Project */ = {
+		0458C5CB24960AE3008C7A2C /* ProjectBoard */ = {
 			isa = PBXGroup;
 			children = (
 				047CDDA92497501200FD80D1 /* ProjectCustomCell.swift */,
+				04C24C6E2498A65F00E8673B /* AddPostView.swift */,
 			);
-			path = Project;
+			path = ProjectBoard;
 			sourceTree = "<group>";
 		};
 		6CBBADF4866D182D4CCAA55F /* Pods */ = {
@@ -429,6 +443,7 @@
 				0455F7C4247D28E700DAE9BC /* TabBarController.swift in Sources */,
 				0458C5CD24960DBA008C7A2C /* ProjectCell.swift in Sources */,
 				FFF81EA52467A0CF009C3D03 /* AppDelegate.swift in Sources */,
+				04C24C712498CEA000E8673B /* AddPostViewController.swift in Sources */,
 				042B1928246C272F005E9900 /* LoginViewController.swift in Sources */,
 				042B1924246C2700005E9900 /* MainViewController.swift in Sources */,
 				043EC735247D327800D1F52E /* ProjectBoardViewController.swift in Sources */,
@@ -445,6 +460,7 @@
 				FFF81EA72467A0CF009C3D03 /* SceneDelegate.swift in Sources */,
 				FFF81EAF2467A0CF009C3D03 /* JoinUs.xcdatamodeld in Sources */,
 				04A550C2247D49BF00661A4F /* ChatViewController.swift in Sources */,
+				04C24C6F2498A65F00E8673B /* AddPostView.swift in Sources */,
 				0455F7C6247D294A00DAE9BC /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
