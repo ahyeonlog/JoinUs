@@ -47,6 +47,7 @@ class LoginViewController: UIViewController {
         theTextField.font = UIFont(name: "System", size: 10.0)
         theTextField.layer.borderWidth = 2.0
         theTextField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
+        theTextField.layer.cornerRadius = 5
         theTextField.borderStyle = .roundedRect
         
         return theTextField
@@ -69,6 +70,7 @@ class LoginViewController: UIViewController {
         theTextField.layer.borderWidth = 2.0
         theTextField.layer.borderColor = UIColor(rgb: Constants.colorHexValue).cgColor
         theTextField.borderStyle = .roundedRect
+        theTextField.layer.cornerRadius = 5
         theTextField.isSecureTextEntry = true
         
         return theTextField

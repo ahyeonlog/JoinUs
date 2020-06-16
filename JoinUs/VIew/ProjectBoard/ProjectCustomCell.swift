@@ -40,16 +40,8 @@ class ProjectCustomCell: UITableViewCell {
         titleLabelConstraints()
         authorLabelConstraints()
         creationTimeConstraints()
-//        likeImageConstraints()
         likeCountLabelConstraints()
-        
-        //        self.contentView.addSubview(nameLabel)
-        //        self.contentView.addSubview(creationTimeLabel)
-        //        self.contentView.addSubview(likeCountLabel)
-        //        self.contentView.addSubview(commentCountLabel)
-        //        self.contentView.addSubview(likeImage)
-        //        self.contentView.addSubview(commentImage)
-        
+        commentCountLabelConstraints()
         
     }
     
@@ -61,7 +53,7 @@ class ProjectCustomCell: UITableViewCell {
     // 글 제목 Label
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -71,7 +63,7 @@ class ProjectCustomCell: UITableViewCell {
     // 작성자 Label
     let authorLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = UIColor(rgb: Constants.colorHexValue)
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -81,58 +73,33 @@ class ProjectCustomCell: UITableViewCell {
     // 작성 시간 Label
     let creationTimeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 10)
+        label.font = UIFont.boldSystemFont(ofSize: 12)
         label.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
-    }()
-    
-    // 좋아요 이미지
-    let likeImage: UIImageView = {
-        var img = UIImageView(frame: CGRect(x: 5, y: 5, width: 5, height: 5))
-        img.image = UIImage(imageLiteralResourceName: "like")
-//        let img = UIImageView(image: UIImage(named: "like"))
-        img.contentMode = .scaleAspectFill
-        img.translatesAutoresizingMaskIntoConstraints = false
-        img.layer.cornerRadius = 15
-        img.frame.size = CGSize(width: 4, height: 8)
-        img.clipsToBounds = true
-        
-        return img
     }()
     
     // 좋아요 개수 Label
     let likeCountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 10)
+        label.font = UIFont.boldSystemFont(ofSize: 12)
         label.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
-    }()
-    
-    // 댓글 이미지
-    let commentImage: UIImageView = {
-        let img = UIImageView(image: UIImage(named: "comment"))
-        img.contentMode = .scaleAspectFill
-        img.translatesAutoresizingMaskIntoConstraints = false
-        img.layer.cornerRadius = 15
-        img.frame.size = CGSize(width: 8, height: 9)
-        img.clipsToBounds = true
-        
-        return img
     }()
     
     // 댓글 개수 Label
     let commentCountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 10)
+        label.font = UIFont.boldSystemFont(ofSize: 12)
         label.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
+    
     
 //MARK:- Constraints
     
@@ -140,7 +107,7 @@ class ProjectCustomCell: UITableViewCell {
     func titleLabelConstraints() {
         self.contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(contentView).offset(10)
+            make.top.equalToSuperview().offset(15)
             make.leading.equalTo(contentView).offset(15)
         }
     }
@@ -149,11 +116,9 @@ class ProjectCustomCell: UITableViewCell {
     func authorLabelConstraints() {
         self.contentView.addSubview(authorLabel)
         authorLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(titleLabel).offset(20)
             make.leading.equalTo(titleLabel)
+            make.bottom.equalToSuperview()
             
-//            make.leading.equalTo(contentView).offset(15)
-//            make.bottom.equalTo(contentView).offset(10)
         }
     }
     
@@ -161,18 +126,9 @@ class ProjectCustomCell: UITableViewCell {
     func creationTimeConstraints() {
         self.contentView.addSubview(creationTimeLabel)
         creationTimeLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(authorLabel)
-            make.leading.equalTo(authorLabel).offset(30)
+            make.leading.equalTo(authorLabel).offset(45)
+            make.bottom.equalToSuperview()
             
-        }
-    }
-    
-    // 좋아요 이미지 제약
-    func likeImageConstraints() {
-        self.contentView.addSubview(likeImage)
-        likeImage.snp.makeConstraints { (make) in
-            make.leading.equalTo(creationTimeLabel).offset(15)
-            make.bottom.equalTo(contentView).offset(5)
         }
     }
     
@@ -180,8 +136,17 @@ class ProjectCustomCell: UITableViewCell {
     func likeCountLabelConstraints() {
         self.contentView.addSubview(likeCountLabel)
         likeCountLabel.snp.makeConstraints { (make) in
-            make.leading.equalTo(likeCountLabel).offset(5)
-            make.bottom.equalTo(contentView).offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview()
+        }
+    }
+    
+    // 댓글 개수 제약
+    func commentCountLabelConstraints() {
+        self.contentView.addSubview(commentCountLabel)
+        commentCountLabel.snp.makeConstraints { (make) in
+            make.trailing.equalTo(likeCountLabel).offset(-30)
+            make.bottom.equalToSuperview()
         }
     }
     
