@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class ProjectBoardViewController: UITableViewController {
     
@@ -15,20 +16,25 @@ class ProjectBoardViewController: UITableViewController {
     
     var projectCells: [ProjectCell] = [ProjectCell]()
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Navigation Controller Setting
+        navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backgroundColor = UIColor.white
         
         // navigation Item Setting
         navigationItem.title = "프로젝트 게시판"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .done, target: self, action: #selector(addTapped))
         
         
+        // Set delegate & datasource
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -38,7 +44,7 @@ class ProjectBoardViewController: UITableViewController {
         
         
         // Add Dummy Data into Array
-        createProjectArray()
+//        createProjectArray()
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -56,24 +62,38 @@ extension ProjectBoardViewController {
     // How many cell will be shown on TableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return projectCells.count
+        let rootRef = Database.database().reference()
+        let projectCellRef = rootRef.child("projectcell")
+        
+        return 2
+        
+        // projectCellRef에서 가장 높은 인덱스 값을 가져와야 한다.
     }
     
     
     // Create our TableView Cell and return it
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // ProjectCustomcCell 생성
+        // Create ProjectCustomcCell.
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProjectCustomCell
         
+        // Insert Data into CustomCell
+        let rootRef = Database.database().reference()
+        let projectCellRef = rootRef.child("projectcell")
+        projectCellRef.child("\(indexPath.row)").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let data = snapshot.value as? NSDictionary {
+                if let title = data["title"], let author = data["author"], let creationTime = data["written_time"], let likeCount = data["like_count"], let commentCount = data["comment_count"] {
+                    cell.titleLabel.text = title as? String
+                    cell.authorLabel.text = author as? String
+                    cell.creationTimeLabel.text = creationTime as? String
+                    cell.likeCountLabel.text = likeCount as? String
+                    cell.commentCountLabel.text = commentCount as? String
+                }
+            }
+            
+        })
         
-        // Cell에 데이터 넣기
-        let currentLastItem = projectCells[indexPath.row]
-        cell.titleLabel.text = currentLastItem.title
-        cell.authorLabel.text = currentLastItem.author
-        cell.creationTimeLabel.text = currentLastItem.creationTime
-        cell.likeCountLabel.text = String(currentLastItem.likeCount!)
-        cell.commentCountLabel.text = String(currentLastItem.commentCount!)
         
         // 좋아요 이미지 넣기
         let likeImg: UIImageView = UIImageView(frame: CGRect(x: 345, y: 15, width: 25, height: 25))
@@ -91,12 +111,12 @@ extension ProjectBoardViewController {
     }
     
     // Append Dummy Data to projectCells Array
-    func createProjectArray() {
-        
-        projectCells.append(ProjectCell(title: "JoinUs Project Board Test", author: "여정수", creationTime: "2020-06-15", likeCount: 5, commentCount: 100))
-        
-        projectCells.append(ProjectCell(title: "Test", author: "Test", creationTime: "2020-06-15", likeCount: 99, commentCount: 99))
-    }
+//    func createProjectArray() {
+//
+//        projectCells.append(ProjectCell(title: "JoinUs Project Board Test", author: "여정수", creationTime: "2020-06-15", likeCount: 5, commentCount: 100))
+//
+//        projectCells.append(ProjectCell(title: "Test", author: "Test", creationTime: "2020-06-15", likeCount: 99, commentCount: 99))
+//    }
     
     
     //MARK:- TableView Delegate
