@@ -218,6 +218,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIGestureRec
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // navigation bar hide when scrool down.
+        self.navigationController?.hidesBarsOnSwipe = true
         
         title = ""
         tapGesture.delegate = self

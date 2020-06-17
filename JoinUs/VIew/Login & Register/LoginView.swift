@@ -80,6 +80,7 @@ class LoginViewController: UIViewController {
     let loginButton: UIButton = {
         let theNextButton = UIButton()
         theNextButton.setTitle("LOGIN", for: .normal)
+        theNextButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         theNextButton.setTitleColor(UIColor.white, for: .normal)
         theNextButton.backgroundColor = UIColor(rgb: Constants.colorHexValue)
         theNextButton.layer.cornerRadius = 5
@@ -91,11 +92,15 @@ class LoginViewController: UIViewController {
     
     //MARK:- Methods
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = ""
-        
-        
+        self.navigationController?.isNavigationBarHidden = true
+
         backgroundViewConstraints()
         registerLabelConstraints()
         idLabelConstraints()
