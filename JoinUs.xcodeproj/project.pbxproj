@@ -32,6 +32,9 @@
 		04C888F8246FC69500C213EE /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C888F7246FC69500C213EE /* AccountInfo.swift */; };
 		58C1E368D0F9A1F1376E1DF0 /* Pods_JoinUs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FE0EFD4B55B1F639181417 /* Pods_JoinUs.framework */; };
 		A30DF895546F4B8C5FC4EC01 /* Pods_JoinUsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D8D9DBE1C0513A03DB4B12 /* Pods_JoinUsTests.framework */; };
+		AFDBB16B24A1E12000D85602 /* GeneralBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDBB16A24A1E12000D85602 /* GeneralBoardCell.swift */; };
+		AFDBB16E24A1E57700D85602 /* AddGeneralPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDBB16D24A1E57700D85602 /* AddGeneralPostView.swift */; };
+		AFECEC7E24A20A8C000D48A2 /* AddGeneralPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFECEC7D24A20A8C000D48A2 /* AddGeneralPostViewController.swift */; };
 		FFF81EA52467A0CF009C3D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF81EA42467A0CF009C3D03 /* AppDelegate.swift */; };
 		FFF81EA72467A0CF009C3D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF81EA62467A0CF009C3D03 /* SceneDelegate.swift */; };
 		FFF81EAF2467A0CF009C3D03 /* JoinUs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFF81EAD2467A0CF009C3D03 /* JoinUs.xcdatamodeld */; };
@@ -79,6 +82,9 @@
 		A7FE0EFD4B55B1F639181417 /* Pods_JoinUs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JoinUs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99AE34B0FEB61D0A7FA1B31 /* Pods-JoinUsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JoinUsTests.debug.xcconfig"; path = "Target Support Files/Pods-JoinUsTests/Pods-JoinUsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AF08A3AF8F9DAC6E1D31F7FE /* Pods-JoinUs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JoinUs.debug.xcconfig"; path = "Target Support Files/Pods-JoinUs/Pods-JoinUs.debug.xcconfig"; sourceTree = "<group>"; };
+		AFDBB16A24A1E12000D85602 /* GeneralBoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralBoardCell.swift; sourceTree = "<group>"; };
+		AFDBB16D24A1E57700D85602 /* AddGeneralPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGeneralPostView.swift; sourceTree = "<group>"; };
+		AFECEC7D24A20A8C000D48A2 /* AddGeneralPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGeneralPostViewController.swift; sourceTree = "<group>"; };
 		D2D8D9DBE1C0513A03DB4B12 /* Pods_JoinUsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JoinUsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF81EA12467A0CF009C3D03 /* JoinUs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JoinUs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF81EA42467A0CF009C3D03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +132,7 @@
 			children = (
 				04C888F7246FC69500C213EE /* AccountInfo.swift */,
 				0458C5CC24960DBA008C7A2C /* ProjectCell.swift */,
+				AFDBB16A24A1E12000D85602 /* GeneralBoardCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -133,6 +140,7 @@
 		042B191F246C26C4005E9900 /* VIew */ = {
 			isa = PBXGroup;
 			children = (
+				AFDBB16C24A1E54E00D85602 /* GeneralBoard */,
 				0458C5C92495FE93008C7A2C /* Login & Register */,
 				0458C5CB24960AE3008C7A2C /* ProjectBoard */,
 			);
@@ -173,10 +181,10 @@
 		0455F7C8247D29C300DAE9BC /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
+				AFA5FB2724A1E02C00DE79BE /* GeneralBoard */,
 				04132ED42498A4E40091A787 /* ProjectBoard */,
 				0455F7C3247D28E700DAE9BC /* TabBarController.swift */,
 				0455F7C5247D294A00DAE9BC /* HomeViewController.swift */,
-				04A550BF247D48D300661A4F /* GeneralBoardViewController.swift */,
 				04A550C1247D49BF00661A4F /* ChatViewController.swift */,
 				04A550C3247D4A5300661A4F /* UserViewController.swift */,
 			);
@@ -223,6 +231,23 @@
 				0D340FAA10431D4309DA9B98 /* Pods-JoinUsTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		AFA5FB2724A1E02C00DE79BE /* GeneralBoard */ = {
+			isa = PBXGroup;
+			children = (
+				04A550BF247D48D300661A4F /* GeneralBoardViewController.swift */,
+				AFECEC7D24A20A8C000D48A2 /* AddGeneralPostViewController.swift */,
+			);
+			path = GeneralBoard;
+			sourceTree = "<group>";
+		};
+		AFDBB16C24A1E54E00D85602 /* GeneralBoard */ = {
+			isa = PBXGroup;
+			children = (
+				AFDBB16D24A1E57700D85602 /* AddGeneralPostView.swift */,
+			);
+			path = GeneralBoard;
 			sourceTree = "<group>";
 		};
 		FFF81E982467A0CF009C3D03 = {
@@ -440,6 +465,7 @@
 				042B1922246C26DA005E9900 /* Constants.swift in Sources */,
 				04A550C4247D4A5300661A4F /* UserViewController.swift in Sources */,
 				042B1926246C271F005E9900 /* RegisterViewController.swift in Sources */,
+				AFDBB16B24A1E12000D85602 /* GeneralBoardCell.swift in Sources */,
 				0455F7C4247D28E700DAE9BC /* TabBarController.swift in Sources */,
 				0458C5CD24960DBA008C7A2C /* ProjectCell.swift in Sources */,
 				FFF81EA52467A0CF009C3D03 /* AppDelegate.swift in Sources */,
@@ -449,12 +475,14 @@
 				043EC735247D327800D1F52E /* ProjectBoardViewController.swift in Sources */,
 				0458C5C32495FD0B008C7A2C /* RegisterView.swift in Sources */,
 				04263CB5246D66EC00F351E4 /* ProfileViewController.swift in Sources */,
+				AFECEC7E24A20A8C000D48A2 /* AddGeneralPostViewController.swift in Sources */,
 				0458C5C72495FE05008C7A2C /* DetailView.swift in Sources */,
 				04C888F8246FC69500C213EE /* AccountInfo.swift in Sources */,
 				04263CB7246D725E00F351E4 /* DetailViewController.swift in Sources */,
 				0458C5C52495FD82008C7A2C /* ProfileView.swift in Sources */,
 				0458C5BF2495FBCC008C7A2C /* MainView.swift in Sources */,
 				0458C5C12495FCA9008C7A2C /* LoginView.swift in Sources */,
+				AFDBB16E24A1E57700D85602 /* AddGeneralPostView.swift in Sources */,
 				04A550C0247D48D300661A4F /* GeneralBoardViewController.swift in Sources */,
 				047CDDAA2497501200FD80D1 /* ProjectCustomCell.swift in Sources */,
 				FFF81EA72467A0CF009C3D03 /* SceneDelegate.swift in Sources */,

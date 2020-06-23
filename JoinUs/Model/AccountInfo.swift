@@ -21,6 +21,4 @@ struct AccountInfo {
     var job: String?
     
     // Initialize stored properties
-    
-    
 }
