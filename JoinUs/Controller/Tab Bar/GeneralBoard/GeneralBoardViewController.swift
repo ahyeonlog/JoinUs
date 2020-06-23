@@ -9,12 +9,18 @@
 import UIKit
 
 class GeneralBoardViewController: UITableViewController {
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.backgroundColor = UIColor.white
         navigationItem.title = "자유게시판"
-
-        // Uncomment the following line to preserve selection between presentations
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tappedAddButton))       // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -87,5 +93,11 @@ class GeneralBoardViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @objc func tappedAddButton() {
+        let addVC = AddGeneralPostView()
+        addVC.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(addVC, animated: true)
+    }
 
 }
