@@ -12,50 +12,49 @@ import FirebaseAuth
 
 extension AddPostView {
     
-    /*
-     프로젝트 셀
-     - 게시글 타이틀 : 제목을 입력해 주세요
-     - 게시글 본문내용
-     - 작성자 닉네임
-     - 작성 시간
-     - 댓글 개수
-     - 좋아요 개수
-     */
-    
     // cancel 버튼 터치시
     @objc func cancelBtnTapped() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     // register 버튼 터치시
     @objc func registerBtnTapped() {
-        cellCount += 1
+        
+        // 입력값이 정상적이지 않은 경우
+        guard let title = titleField.text, title.isEmpty == false, let contents = contentsTextView.text, contents.isEmpty == false else {
+            alertFilltext()
+            return
+        }
+        
+        // 입력값이 정상인 경우
+        saveProjectPost(title: title, content: contents)
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func saveProjectPost(title: String, content: String) {
+        // 시간 저장 포맷 정의
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let currentTime = formatter.string(from: Date())
         
+        // 데이터베이스 참조 변수 선언
         let ref = Database.database().reference()
         
-        let projectCellRef = ref.child("projectcell")
-        let userRef = ref.child("users")
-        if let title = self.titleField.text, let contents = self.contentsTextView.text, let uid = Auth.auth().currentUser?.uid {
-            
-            userRef.child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                let value = snapshot.value as? NSDictionary
-                let author = value?["name"]
-                
-                projectCellRef.child(String(self.cellCount)).setValue(["author": author, "title": title, "contents": contents, "written_time": currentTime, "like_count": "0", "comment_count": "0"])
-            })
-            
-//            showAlert(message: "정상적으로 글이 등록되었습니다.")
-            print("cellCount = \(cellCount)")
+        // ProjectPosts.childByAutoId에 데이터 저장
+        if let uid = Auth.auth().currentUser?.uid {
+            ref.child("ProjectPosts").childByAutoId().setValue(["author" : uid, "title": title, "contents": content, "createTime": currentTime, "like_count": 0, "comment_count": 0 ])
         }
-        
-        self.dismiss(animated: true, completion: nil)
-        
+
     }
     
-    
+    func alertFilltext() {
+        let alert = UIAlertController(title: "제목과 본문을 입력하세요.", message: nil, preferredStyle: .alert)
+        
+        let okButton = UIAlertAction(title: "확인", style: .cancel, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }

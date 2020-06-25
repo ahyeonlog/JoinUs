@@ -31,7 +31,8 @@ class ProjectBoardViewController: UITableViewController {
         
         // navigation Item Setting
         navigationItem.title = "프로젝트 게시판"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .done, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))       // Uncomment the following line to preserve selection between presentations
+        
         
         
         // Set delegate & datasource
