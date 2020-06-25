@@ -20,11 +20,12 @@ import UIKit
     취소, 등록
  */
 
-struct ProjectCell {
+struct ProjectPost {
     
-    var title: String?              // 게시글 타이틀
     var author: String?              // 게시글 작성자
-    var creationTime: String?        // 게시글 작성 시간
+    var title: String?              // 게시글 타이틀
+    var contents: String?           // 게시글 본문
+    var createTime: String?        // 게시글 작성 시간
     var likeCount: Int?              // 좋아요 개수
     var commentCount: Int?           // 댓글 개수
     
