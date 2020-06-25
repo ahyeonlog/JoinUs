@@ -32,7 +32,6 @@ extension AddPostView {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     func saveProjectPost(title: String, content: String) {
         // 시간 저장 포맷 정의
         let formatter = DateFormatter()
@@ -46,12 +45,10 @@ extension AddPostView {
         if let uid = Auth.auth().currentUser?.uid {
             ref.child("ProjectPosts").childByAutoId().setValue(["author" : uid, "title": title, "contents": content, "createTime": currentTime, "like_count": 0, "comment_count": 0 ])
         }
-
     }
-    
+
     func alertFilltext() {
         let alert = UIAlertController(title: "제목과 본문을 입력하세요.", message: nil, preferredStyle: .alert)
-        
         let okButton = UIAlertAction(title: "확인", style: .cancel, handler: nil)
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)

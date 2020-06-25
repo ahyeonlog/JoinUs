@@ -21,7 +21,7 @@
 		0458C5C32495FD0B008C7A2C /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458C5C22495FD0B008C7A2C /* RegisterView.swift */; };
 		0458C5C52495FD82008C7A2C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458C5C42495FD82008C7A2C /* ProfileView.swift */; };
 		0458C5C72495FE05008C7A2C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458C5C62495FE05008C7A2C /* DetailView.swift */; };
-		0458C5CD24960DBA008C7A2C /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458C5CC24960DBA008C7A2C /* ProjectCell.swift */; };
+		0458C5CD24960DBA008C7A2C /* ProjectPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458C5CC24960DBA008C7A2C /* ProjectPost.swift */; };
 		047CDDAA2497501200FD80D1 /* ProjectCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047CDDA92497501200FD80D1 /* ProjectCustomCell.swift */; };
 		04A550C0247D48D300661A4F /* GeneralBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A550BF247D48D300661A4F /* GeneralBoardViewController.swift */; };
 		04A550C2247D49BF00661A4F /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A550C1247D49BF00661A4F /* ChatViewController.swift */; };
@@ -68,7 +68,7 @@
 		0458C5C22495FD0B008C7A2C /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		0458C5C42495FD82008C7A2C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0458C5C62495FE05008C7A2C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		0458C5CC24960DBA008C7A2C /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
+		0458C5CC24960DBA008C7A2C /* ProjectPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPost.swift; sourceTree = "<group>"; };
 		047CDDA92497501200FD80D1 /* ProjectCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCustomCell.swift; sourceTree = "<group>"; };
 		04A550BF247D48D300661A4F /* GeneralBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralBoardViewController.swift; sourceTree = "<group>"; };
 		04A550C1247D49BF00661A4F /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				04C888F7246FC69500C213EE /* AccountInfo.swift */,
-				0458C5CC24960DBA008C7A2C /* ProjectCell.swift */,
+				0458C5CC24960DBA008C7A2C /* ProjectPost.swift */,
 				AFDBB16A24A1E12000D85602 /* GeneralBoardCell.swift */,
 			);
 			path = Model;
@@ -467,7 +467,7 @@
 				042B1926246C271F005E9900 /* RegisterViewController.swift in Sources */,
 				AFDBB16B24A1E12000D85602 /* GeneralBoardCell.swift in Sources */,
 				0455F7C4247D28E700DAE9BC /* TabBarController.swift in Sources */,
-				0458C5CD24960DBA008C7A2C /* ProjectCell.swift in Sources */,
+				0458C5CD24960DBA008C7A2C /* ProjectPost.swift in Sources */,
 				FFF81EA52467A0CF009C3D03 /* AppDelegate.swift in Sources */,
 				04C24C712498CEA000E8673B /* AddPostViewController.swift in Sources */,
 				042B1928246C272F005E9900 /* LoginViewController.swift in Sources */,
